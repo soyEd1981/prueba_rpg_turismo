@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Escenas/LlamadaAPI.gd" type="Script" id=1]
+[ext_resource path="res://Activos/Kenney Rocket Square.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="LlamadaAPI" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="ContenedorSelectorEstado" type="VBoxContainer" parent="."]
+margin_left = 29.4802
+margin_top = 31.5198
+margin_right = 447.48
+margin_bottom = 854.52
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectorEstado" type="OptionButton" parent="ContenedorSelectorEstado"]
+margin_right = 500.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 300, 50 )
+custom_fonts/font = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="ContenedorSelectorEstado"]
+margin_top = 54.0
+margin_right = 500.0
+margin_bottom = 58.0
+
+[node name="MensajeEstadoSeleccionado" type="Label" parent="ContenedorSelectorEstado"]
+margin_top = 62.0
+margin_right = 500.0
+margin_bottom = 262.0
+rect_min_size = Vector2( 500, 200 )
+custom_fonts/font = SubResource( 2 )
+text = "Aún no has seleccionado el estado de la república en el que deseas realizar la misión"
+autowrap = true
+
+[node name="HSeparator2" type="HSeparator" parent="ContenedorSelectorEstado"]
+margin_top = 266.0
+margin_right = 500.0
+margin_bottom = 270.0
+
+[node name="SelectorMunicipio" type="OptionButton" parent="ContenedorSelectorEstado"]
+margin_top = 274.0
+margin_right = 500.0
+margin_bottom = 474.0
+rect_min_size = Vector2( 500, 200 )
+custom_fonts/font = SubResource( 3 )
+disabled = true
+
+[node name="HSeparator3" type="HSeparator" parent="ContenedorSelectorEstado"]
+margin_top = 478.0
+margin_right = 500.0
+margin_bottom = 482.0
+
+[node name="MensajeMunicipioSeleccionado" type="Label" parent="ContenedorSelectorEstado"]
+margin_top = 486.0
+margin_right = 500.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 4 )
+text = "Ahora selecciona el municipio en donde realizarás la misión"
+autowrap = true
+
+[node name="ContenedorListadoMisiones" type="VBoxContainer" parent="."]
+margin_left = 916.149
+margin_top = 33.7514
+margin_right = 1413.15
+margin_bottom = 889.751
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Encargos" type="Button" parent="ContenedorListadoMisiones"]
+margin_right = 671.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 5 )
+text = "Misiones disponibles"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="ContenedorListadoMisiones"]
+margin_top = 35.0
+margin_right = 671.0
+margin_bottom = 39.0
+
+[node name="ListadoMisiones" type="OptionButton" parent="ContenedorListadoMisiones"]
+margin_top = 43.0
+margin_right = 671.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 6 )
+text = "Lugares"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="ContenedorListadoMisiones"]
+margin_top = 78.0
+margin_right = 671.0
+margin_bottom = 82.0
+
+[node name="MensajeMisionSeleccionada" type="Label" parent="ContenedorListadoMisiones"]
+margin_top = 86.0
+margin_right = 671.0
+margin_bottom = 111.0
+custom_fonts/font = SubResource( 7 )
+text = "No has seleccionado ninguna misión aún"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="item_selected" from="ContenedorSelectorEstado/SelectorEstado" to="." method="_on_SeleccionEstado_item_selected"]
+[connection signal="item_selected" from="ContenedorSelectorEstado/SelectorMunicipio" to="." method="_on_SelectorMunicipio_item_selected"]
+[connection signal="pressed" from="ContenedorListadoMisiones/Encargos" to="." method="_on_Encargos_pressed"]
+[connection signal="item_selected" from="ContenedorListadoMisiones/ListadoMisiones" to="." method="_on_ListadoMisiones_item_selected"]
