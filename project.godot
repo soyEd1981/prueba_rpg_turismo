@@ -10,20 +10,8 @@ config_version=4
 
 [application]
 
-config/name="Proyecto-rpg-turismo"
-run/main_scene="res://Escenas/LlamadaAPI.tscn"
+config/name="Prueba Llamada Api"
 config/icon="res://icon.png"
-
-[display]
-
-window/size/width=1920
-window/size/height=1080
-window/stretch/mode="2d"
-window/stretch/aspect="expand"
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
 
 [physics]
 
